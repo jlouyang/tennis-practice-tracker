@@ -1,6 +1,10 @@
 'use client'
 import { useState } from "react";
 
+interface TableProps {
+  serves: string[];
+}
+
 export default function TrackServes() {
   const [totalServes, setTotalServes] = useState(0);
   const [makes, setMakes] = useState(0);
@@ -8,6 +12,9 @@ export default function TrackServes() {
   const [missWide, setMissWide] = useState(0);
   const [missDeep, setMissDeep] = useState(0);
   const [lastAction, setLastAction] = useState(""); // State for last action
+  const [deuceServes, setDeuceServes] = useState<string[]>([]);
+  const [adServes, setAdServes] = useState<string[]>([]);
+  const [currentSide, setCurrentSide] = useState('deuce'); // State for current side
 // New state variables for each type of serve
 const [makesT, setMakesT] = useState(0);
 const [makesBodyFH, setMakesBodyFH] = useState(0);
@@ -18,24 +25,44 @@ const [makesWide, setMakesWide] = useState(0);
     setMakes(makes + 1);
     setTotalServes(totalServes + 1);
     setLastAction("make"); // Record last action
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'make']);
+    } else {
+      setAdServes([...adServes, 'make']);
+    }
   };
 
   const handleMissNet = () => {
     setMissNet(missNet + 1);
     setTotalServes(totalServes + 1);
     setLastAction("missNet"); // Record last action
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'missNet']);
+    } else {
+      setAdServes([...adServes, 'missNet']);
+    }
   };
 
   const handleMissWide = () => {
     setMissWide(missWide + 1);
     setTotalServes(totalServes + 1);
     setLastAction("missWide"); // Record last action
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'missWide']);
+    } else {
+      setAdServes([...adServes, 'missWide']);
+    }
   };
 
   const handleMissDeep = () => {
     setMissDeep(missDeep + 1);
     setTotalServes(totalServes + 1);
     setLastAction("missDeep"); // Record last action
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'missDeep']);
+    } else {
+      setAdServes([...adServes, 'missDeep']);
+    }
   };
 
   const handleMakeT = () => {
@@ -43,6 +70,13 @@ const [makesWide, setMakesWide] = useState(0);
     setMakes(makes + 1);
     setTotalServes(totalServes + 1);
     setLastAction("makeT");
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'makeT']);
+      setDeuceServes([...deuceServes,'make'])
+    } else {
+      setAdServes([...adServes, 'makeT']);
+      setAdServes([...adServes,'make'])
+    }
   };
 
   const handleMakeBodyFH = () => {
@@ -50,6 +84,13 @@ const [makesWide, setMakesWide] = useState(0);
     setMakes(makes + 1);
     setTotalServes(totalServes + 1);
     setLastAction("makeBodyFH");
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'makeBodyFH']);
+      setDeuceServes([...deuceServes,'make'])
+    } else {
+      setAdServes([...adServes, 'makeBodyFH']);
+      setAdServes([...adServes,'make'])
+    }
   };
 
   const handleMakeBodyBH = () => {
@@ -57,6 +98,13 @@ const [makesWide, setMakesWide] = useState(0);
     setMakes(makes + 1);
     setTotalServes(totalServes + 1);
     setLastAction("makeBodyBH");
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'makeBodyBH']);
+      setDeuceServes([...deuceServes,'make'])
+    } else {
+      setAdServes([...adServes, 'makeBodyBH']);
+      setAdServes([...adServes,'make'])
+    }
   };
 
   const handleMakeWide = () => {
@@ -64,6 +112,13 @@ const [makesWide, setMakesWide] = useState(0);
     setMakes(makes + 1);
     setTotalServes(totalServes + 1);
     setLastAction("makeWide");
+    if (currentSide === 'deuce') {
+      setDeuceServes([...deuceServes, 'makeWide']);
+      setDeuceServes([...deuceServes,'make'])
+    } else {
+      setAdServes([...adServes, 'makeWide']);
+      setAdServes([...adServes,'make'])
+    }
   };
 
   const handleUndo = () => {
@@ -72,30 +127,66 @@ const [makesWide, setMakesWide] = useState(0);
     setMakesT(makesT - 1);
     setMakes(makes - 1);
     setTotalServes(totalServes - 1);
+    if (currentSide === 'deuce') {
+      setDeuceServes(deuceServes.slice(0, -1));
+    } else {
+      setAdServes(adServes.slice(0, -1));
+    }
   } else if (lastAction === "makeBodyFH") {
     setMakesBodyFH(makesBodyFH - 1);
     setMakes(makes - 1);
     setTotalServes(totalServes - 1);
+    if (currentSide === 'deuce') {
+      setDeuceServes(deuceServes.slice(0, -1));
+    } else {
+      setAdServes(adServes.slice(0, -1));
+    }
   } else if (lastAction === "makeBodyBH") {
     setMakesBodyBH(makesBodyBH - 1);
     setMakes(makes - 1);
     setTotalServes(totalServes - 1);
+    if (currentSide === 'deuce') {
+      setDeuceServes(deuceServes.slice(0, -1));
+    } else {
+      setAdServes(adServes.slice(0, -1));
+    }
   } else if (lastAction === "makeWide") {
     setMakesWide(makesWide - 1);
     setMakes(makes - 1);
     setTotalServes(totalServes - 1);
+    if (currentSide === 'deuce') {
+      setDeuceServes(deuceServes.slice(0, -1));
+    } else {
+      setAdServes(adServes.slice(0, -1));
+    }
   } else if (lastAction === "missNet") {
       setMissNet(missNet - 1);
       setTotalServes(totalServes - 1);
+      if (currentSide === 'deuce') {
+        setDeuceServes(deuceServes.slice(0, -1));
+      } else {
+        setAdServes(adServes.slice(0, -1));
+      }
     } else if (lastAction === "missWide") {
       setMissWide(missWide - 1);
       setTotalServes(totalServes - 1);
+      if (currentSide === 'deuce') {
+        setDeuceServes(deuceServes.slice(0, -1));
+      } else {
+        setAdServes(adServes.slice(0, -1));
+      }
     } else if (lastAction === "missDeep") {
       setMissDeep(missDeep - 1);
       setTotalServes(totalServes - 1);
+      if (currentSide === 'deuce') {
+        setDeuceServes(deuceServes.slice(0, -1));
+      } else {
+        setAdServes(adServes.slice(0, -1));
+      }
     }
     setLastAction(""); // Clear last action
   };
+
   const handleClear = () => {
     setMakes(0);
     setTotalServes(0);
@@ -106,18 +197,119 @@ const [makesWide, setMakesWide] = useState(0);
     setMakesBodyFH(0);
     setMakesBodyBH(0);
     setMakesWide(0);
+    setDeuceServes([]);
+    setAdServes([]);
     setLastAction(""); // Clear last action
   };
+  const DeuceTable: React.FC<TableProps> = ({ serves }) => {
+    return (
+      <table className="min-w-full border-collapse border border-gray-200">
+        <thead>
+          <tr>
+            <th className="border border-gray-300 p-2">Description</th>
+            <th className="border border-gray-300 p-2">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border border-gray-300 p-2">Total Serves</td>
+            <td className="border border-gray-300 p-2">{serves.length}</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Makes</td>
+            <td className="border border-gray-300 p-2">{serves.filter(serve => serve === 'make').length}</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Serve Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'make').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">T Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeT').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Body FH Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyFH').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Body BH Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyBH').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Wide Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeWide').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed in Net</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missNet').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed Wide</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missWide').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed Deep</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missDeep').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
 
-  const servePercentage = totalServes > 0 ? (makes / totalServes) * 100 : 0;
-  const missNetPercentage = totalServes > 0 ? (missNet / totalServes) * 100 : 0;
-  const missWidePercentage = totalServes > 0 ? (missWide / totalServes) * 100 : 0;
-  const missDeepPercentage = totalServes > 0 ? (missDeep / totalServes) * 100 : 0;
-  const tPercentage = totalServes > 0 ? (makesT / totalServes) * 100 : 0;
-  const bodyFHPercentage = totalServes > 0 ? (makesBodyFH / totalServes) * 100 : 0;
-  const bodyBHPercentage = totalServes > 0 ? (makesBodyBH / totalServes) * 100 : 0;
-  const widePercentage = totalServes > 0 ? (makesWide / totalServes) * 100 : 0;
-
+  const AdTable: React.FC<TableProps> = ({ serves }) => {
+    return (
+      <table className="min-w-full border-collapse border border-gray-200">
+        <thead>
+          <tr>
+            <th className="border border-gray-300 p-2">Description</th>
+            <th className="border border-gray-300 p-2">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border border-gray-300 p-2">Total Serves</td>
+            <td className="border border-gray-300 p-2">{serves.length}</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Makes</td>
+            <td className="border border-gray-300 p-2">{serves.filter(serve => serve === 'make').length}</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Serve Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'make').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">T Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeT').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Body FH Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyFH').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Body BH Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyBH').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Wide Percentage</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeWide').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed in Net</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missNet').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed Wide</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missWide').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 p-2">Missed Deep</td>
+            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missDeep').length / serves.length * 100).toFixed(2)}%</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8">
@@ -125,57 +317,8 @@ const [makesWide, setMakesWide] = useState(0);
       <div className="mt-4">
       <p>Total Serves: {totalServes}</p>
       <div className="mt-4">
-  <table className="min-w-full border-collapse border border-gray-200">
-    <thead>
-      <tr>
-        <th className="border border-gray-300 p-2">Description</th>
-        <th className="border border-gray-300 p-2">Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td className="border border-gray-300 p-2">Total Serves</td>
-        <td className="border border-gray-300 p-2">{totalServes}</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Makes</td>
-        <td className="border border-gray-300 p-2">{makes}</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Serve Percentage</td>
-        <td className="border border-gray-300 p-2">{servePercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">T Percentage</td>
-        <td className="border border-gray-300 p-2">{tPercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Body FH Percentage</td>
-        <td className="border border-gray-300 p-2">{bodyFHPercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Body BH Percentage</td>
-        <td className="border border-gray-300 p-2">{bodyBHPercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Wide Percentage</td>
-        <td className="border border-gray-300 p-2">{widePercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Missed in Net</td>
-        <td className="border border-gray-300 p-2">{missNetPercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Missed Wide</td>
-        <td className="border border-gray-300 p-2">{missWidePercentage.toFixed(2)}%</td>
-      </tr>
-      <tr>
-        <td className="border border-gray-300 p-2">Missed Deep</td>
-        <td className="border border-gray-300 p-2">{missDeepPercentage.toFixed(2)}%</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        {currentSide === 'deuce' ? <DeuceTable serves={deuceServes} /> : <AdTable serves={adServes} />}
+      </div>
       </div>
       <div className="mt-4 flex flex-col items-center">
   <div className="mb-2 flex justify-center space-x-2">
@@ -201,6 +344,14 @@ const [makesWide, setMakesWide] = useState(0);
     </button>
     <button onClick={handleMissDeep} className="rounded bg-red-500 text-white p-2 w-40">
       Miss Deep
+    </button>
+  </div>
+  <div className="mb-2 flex justify-center space-x-2">
+    <button onClick={() => setCurrentSide('deuce')} className="mt-2 rounded bg-blue-500 text-white p-2 w-40">
+      Deuce
+    </button>
+    <button onClick={() => setCurrentSide('ad')} className="mt-2 rounded bg-blue-500 text-white p-2 w-40">
+      Ad
     </button>
   </div>
   <div className="mb-2 flex justify-center space-x-2">
