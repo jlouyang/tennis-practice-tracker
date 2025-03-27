@@ -221,35 +221,35 @@ const [makesWide, setMakesWide] = useState(0);
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Serve Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'make').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'make').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">T Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeT').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeT').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Body FH Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyFH').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeBodyFH').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Body BH Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyBH').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeBodyBH').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Wide Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeWide').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeWide').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed in Net</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missNet').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missNet').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed Wide</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missWide').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missWide').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed Deep</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missDeep').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missDeep').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
         </tbody>
       </table>
@@ -276,35 +276,35 @@ const [makesWide, setMakesWide] = useState(0);
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Serve Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'make').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'make').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">T Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeT').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeT').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Body FH Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyFH').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeBodyFH').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Body BH Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeBodyBH').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeBodyBH').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Wide Percentage</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'makeWide').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'makeWide').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed in Net</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missNet').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missNet').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed Wide</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missWide').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missWide').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Missed Deep</td>
-            <td className="border border-gray-300 p-2">{(serves.filter(serve => serve === 'missDeep').length / serves.length * 100).toFixed(2)}%</td>
+            <td className="border border-gray-300 p-2">{serves.length > 0 ? ((serves.filter(serve => serve === 'missDeep').length / serves.length) * 100).toFixed(2) : '0'}%</td>
           </tr>
         </tbody>
       </table>
